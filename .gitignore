@@ -1,0 +1,32 @@
+# Node modules
+node_modules/
+
+# Yarn 1 logs
+.yarn-error.log
+
+# Yarn 2+ cache (keep specific folders)
+.yarn/*
+
+# Env files
+.env
+.env.local
+.env.*.local
+
+# Logs
+logs
+*.log
+
+# Build output
+dist/
+build/
+
+# TypeScript
+*.tsbuildinfo
+
+# IDE
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db

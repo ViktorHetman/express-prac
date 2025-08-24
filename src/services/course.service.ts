@@ -1,5 +1,6 @@
 import { CoursesRepository } from '../repositories/courses.repository';
 import { CreateCourseDTO, ResponseCourseDTO, UpdateCourseDTO } from '../dto/courses';
+import { NotFoundError } from '../errors/not-found-error';
 
 export class CoursesService {
   constructor(private coursesRepository: CoursesRepository) {}
@@ -12,7 +13,7 @@ export class CoursesService {
   async getById(id: number): Promise<ResponseCourseDTO | null> {
     const course = await this.coursesRepository.findById(id);
     if (!course) {
-      throw new Error('Course not found');
+      throw new NotFoundError('Course');
     }
     return new ResponseCourseDTO(course);
   }
@@ -24,13 +25,16 @@ export class CoursesService {
 
   async update(id: number, dto: UpdateCourseDTO): Promise<ResponseCourseDTO> {
     const course = await this.coursesRepository.update(id, dto);
+    if (!course) {
+      throw new NotFoundError('Course');
+    }
     return new ResponseCourseDTO(course);
   }
 
   async delete(id: number): Promise<void> {
     const course = await this.coursesRepository.delete(id);
     if (!course) {
-      throw new Error('Course not found');
+      throw new NotFoundError('Course');
     }
   }
 }

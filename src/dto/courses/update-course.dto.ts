@@ -1,9 +1,10 @@
-import { IsOptional, IsString } from 'class-validator';
+import { IsNotEmpty, IsOptional, IsString } from 'class-validator';
 
 export class UpdateCourseDTO {
   /**
    * Title for the updated course
    */
+  @IsNotEmpty()
   @IsOptional()
   @IsString()
   title?: string;

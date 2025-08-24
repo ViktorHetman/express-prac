@@ -1,5 +1,6 @@
 import { PrismaClient, type Course } from '../../prisma/__generated__';
 import { CreateCourseDTO, UpdateCourseDTO } from '../dto/courses';
+import { NotFoundError } from '../errors/not-found-error';
 
 export class CoursesRepository {
   constructor(private prisma: PrismaClient) {}
@@ -38,16 +39,20 @@ export class CoursesRepository {
   }
 
   async update(id: number, data: UpdateCourseDTO): Promise<Course> {
-    return this.prisma.course.update({
-      where: { id },
-      data: {
-        title: data.title,
-        description: data.description,
-      },
-    });
+    try {
+      return await this.prisma.course.update({ where: { id }, data });
+    } catch (e: any) {
+      if (e.code === 'P2025') throw new NotFoundError('Course');
+      throw e;
+    }
   }
 
   async delete(id: number): Promise<Course> {
-    return this.prisma.course.delete({ where: { id } });
+    try {
+      return await this.prisma.course.delete({ where: { id } });
+    } catch (e: any) {
+      if (e.code === 'P2025') throw new NotFoundError('Course');
+      throw e;
+    }
   }
 }

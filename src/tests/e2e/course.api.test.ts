@@ -2,7 +2,7 @@ import request from 'supertest';
 
 import { app } from '../../app';
 
-import { CreateCourseDTO, ResponseCourseDTO, UpdateCourseDTO } from '../../dto/courses';
+import { CreateCourseDTO, ResponseCourseDTO, UpdateCourseDTO } from '../../courses/dto';
 
 describe('/courses', () => {
   let createdCourse1: ResponseCourseDTO;

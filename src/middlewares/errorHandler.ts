@@ -2,8 +2,6 @@ import { NextFunction, Request, Response } from 'express';
 import { AppError } from '../errors/app-error';
 
 export function errorHandler(err: any, req: Request, res: Response, next: NextFunction) {
-  //   console.error('Error:', err);
-
   if (err instanceof AppError) {
     return res.status(err.statusCode).json({
       statusCode: err.statusCode,

@@ -38,3 +38,6 @@ prisma/__generated__/
 
 # Own requirements
 todo.txt
+
+# Coverage
+coverage

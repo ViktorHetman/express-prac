@@ -1,5 +1,5 @@
 import { PrismaClient, type Course } from '../../prisma/__generated__';
-import { CreateCourseDTO, UpdateCourseDTO } from '../dto/courses';
+import { CreateCourseDTO, UpdateCourseDTO } from './dto';
 import { NotFoundError } from '../errors/not-found-error';
 
 export class CoursesRepository {

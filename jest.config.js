@@ -8,4 +8,9 @@ export default {
   transform: {
     ...tsJestTransformCfg,
   },
+  preset: 'ts-jest',
+  rootDir: '.',
+  testMatch: ['<rootDir>/src/**/*.spec.ts'],
+  moduleFileExtensions: ['ts', 'js', 'json', 'node'],
+  clearMocks: true,
 };

@@ -2,8 +2,8 @@ import type { Response, NextFunction } from 'express';
 import { plainToInstance } from 'class-transformer';
 import { validateOrReject } from 'class-validator';
 
-import { CoursesService } from '../services/course.service';
-import { CreateCourseDTO, UpdateCourseDTO, QueryCourseDTO, URIParamsCourseIdDTO } from '../dto/courses';
+import { CoursesService } from './courses.service';
+import { CreateCourseDTO, UpdateCourseDTO, QueryCourseDTO, URIParamsCourseIdDTO } from './dto';
 
 import type { RequestWithBody, RequestWithParams, RequestWithParamsAndBody, RequestWithQuery } from '../types/requests';
 

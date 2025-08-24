@@ -1,5 +1,5 @@
-import { CoursesRepository } from '../repositories/courses.repository';
-import { CreateCourseDTO, ResponseCourseDTO, UpdateCourseDTO } from '../dto/courses';
+import { CoursesRepository } from './courses.repository';
+import { CreateCourseDTO, ResponseCourseDTO, UpdateCourseDTO } from './dto';
 import { NotFoundError } from '../errors/not-found-error';
 
 export class CoursesService {

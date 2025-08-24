@@ -1,9 +1,9 @@
 import { Router } from 'express';
 import { PrismaClient } from '../../prisma/__generated__';
 
-import { CoursesRepository } from '../repositories/courses.repository';
-import { CoursesService } from '../services/course.service';
-import { CoursesController } from '../controllers/courses.controller';
+import { CoursesRepository } from './courses.repository';
+import { CoursesService } from './courses.service';
+import { CoursesController } from './courses.controller';
 
 const prisma = new PrismaClient();
 const repository = new CoursesRepository(prisma);

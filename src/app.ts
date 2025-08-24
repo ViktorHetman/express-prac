@@ -2,7 +2,7 @@ import 'reflect-metadata';
 import express from 'express';
 import cors from 'cors';
 
-import coursesRoutes from './routes/courses.routes';
+import coursesRoutes from './courses/courses.route';
 import { errorHandler } from './middlewares/errorHandler';
 
 export const app: express.Express = express();

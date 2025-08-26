@@ -5,15 +5,54 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env("DATABASE_URI_TEST")
+  url      = env("DATABASE_URI")
 }
 
 model Course {
   id          Int      @id @default(autoincrement()) @map("course_id")
-  title      String   @map("title")
+  title       String   @map("title")
   description String?  @map("description")
   createdAt   DateTime @default(now()) @map("created_at")
   updatedAt   DateTime @updatedAt @map("updated_at")
-
+  
+  enrollments Enrollment[]
   @@map("course")
+}
+
+
+model User {
+  id          Int      @id @default(autoincrement()) @map("user_id")
+  email       String   @unique @map("email")
+  password    String   @map("password")
+  role        Role     @default(USER) @map("role")
+  createdAt   DateTime @default(now()) @map("created_at")
+  updatedAt   DateTime @updatedAt @map("updated_at")
+
+  enrollments Enrollment[]
+  @@map("user")
+}
+
+enum Role {
+  USER
+  ADMIN
+}
+
+model Enrollment {
+  userId      Int      @map("user_id")
+  courseId    Int      @map("course_id")
+  user        User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  course      Course   @relation(fields: [courseId], references: [id], onDelete: Cascade)
+  status      EnrollmentStatus @default(ACTIVE) @map("status")
+  progress    Int? @default(0) @map("progress")
+  createdAt   DateTime @default(now()) @map("created_at")
+  completedAt DateTime? @map("completed_at")
+
+  @@id([userId, courseId])
+  @@map("enrollment")
+}
+
+enum EnrollmentStatus {
+  ACTIVE
+  COMPLETED
+  CANCELLED
 }

@@ -5,10 +5,6 @@ import { NotFoundError } from '../errors/not-found-error';
 export class CoursesRepository {
   constructor(private prisma: PrismaClient) {}
 
-  async findAll(): Promise<Course[]> {
-    return this.prisma.course.findMany();
-  }
-
   async findById(id: number): Promise<Course | null> {
     return this.prisma.course.findUnique({
       where: { id },
